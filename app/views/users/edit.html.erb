@@ -1,0 +1,23 @@
+<h2>User info</h2>
+
+<div class="form-group">
+        <label for="user_name">Name</label>
+        <input class="form-control name" type="text" value="溝上晴太朗" name="user[name]" id="user_name">
+      </div>
+
+
+def create
+    # １. データを新規登録するためのインスタンス作成
+    list = List.new(list_params)
+    # ２. データをデータベースに保存するためのsaveメソッド実行
+    list.save
+    # ３. トップ画面へリダイレクト
+    redirect_to '/top'
+  end
+
+  private
+  # ストロングパラメータ
+  def list_params
+    params.require(:list).permit(:title, :body)
+  end
+  
